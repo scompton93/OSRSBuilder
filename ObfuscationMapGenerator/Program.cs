@@ -1,6 +1,7 @@
 ﻿
 
 using dnlib.DotNet;
+using Newtonsoft.Json;
 
 
 namespace ObfuscationMapGenerator
@@ -13,7 +14,7 @@ namespace ObfuscationMapGenerator
 
             var obfuscatedTypes = new List<ObfuscatedType>();
 
-            foreach (var type in module.GetTypes().Where(t => t.HasCustomAttributes && t.Name == "GameEngine"))
+            foreach (var type in module.GetTypes())
             {
                 if (type.CustomAttributes == null)
                     continue;
@@ -38,6 +39,7 @@ namespace ObfuscationMapGenerator
                 {
                     if (method.CustomAttributes == null)
                         continue;
+
                     var obfuscatedMethod = new ObfuscatedMethod();
                     obfuscatedMethod.DeobfuscatedName = method.Name;
                     foreach (var customAttribute in method.CustomAttributes)
@@ -64,11 +66,53 @@ namespace ObfuscationMapGenerator
                             }
                         }
                     }
-                    obfuscatedType.ObfuscatedMethods.Add(obfuscatedMethod);
+                    if(obfuscatedType.DeobfuscatedName != null)
+                        obfuscatedType.ObfuscatedMethods.Add(obfuscatedMethod);
                 }
-                obfuscatedTypes.Add(obfuscatedType);
-            }
 
+                foreach (var field in type.Fields)
+                {
+                    if (field.CustomAttributes == null)
+                        continue;
+
+                    var obfuscatedField = new ObfuscatedField();
+
+                    obfuscatedField.DeobfuscatedName = field.Name;
+                    foreach (var customAttribute in field.CustomAttributes)
+                    {
+                        if (customAttribute.AttributeType.Name == "ObfuscatedNameAttribute")
+                        {
+                            if (customAttribute.AttributeType.Name == "ObfuscatedNameAttribute")
+                            {
+                                List<CAArgument> a2 = (List<CAArgument>)customAttribute.ConstructorArguments.Last<CAArgument>().Value;
+                                string a3 = a2[3].Value.ToString();
+                                obfuscatedField.ObfuscatedName = a3;
+                            }
+                            else if (customAttribute.AttributeType.FullName == "net.runelite.mapping.ExportAttribute")
+                            {
+                                List<CAArgument> a2 = (List<CAArgument>)customAttribute.ConstructorArguments.Last<CAArgument>().Value;
+                                string a3 = a2[3].Value.ToString();
+                                obfuscatedField.Export = a3;
+                            }
+                            else if (customAttribute.AttributeType.FullName == "net.runelite.mapping.ObfuscatedSignatureAttribute")
+                            {
+                                List<CAArgument> a2 = (List<CAArgument>)customAttribute.ConstructorArguments.Last<CAArgument>().Value;
+                                var test = (List<CAArgument>)customAttribute.ConstructorArguments;
+                                for (int i = 2; i < test.Count; i++)
+                                {
+                                    obfuscatedField.ObfuscatedSignature.Add(a2[i].Value.ToString());
+                                }
+                            }
+                        }
+                    }
+                    if (obfuscatedType.DeobfuscatedName != null)
+                        obfuscatedType.ObfuscatedFields.Add(obfuscatedField);
+                }
+                if (obfuscatedType.DeobfuscatedName != null)
+                    obfuscatedTypes.Add(obfuscatedType);
+            }
+            var jsonMappings = JsonConvert.SerializeObject(obfuscatedTypes);
+            File.WriteAllText("mappings.json", jsonMappings);
             Console.ReadKey();
         }
     }

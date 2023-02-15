@@ -6,22 +6,30 @@ using System.Threading.Tasks;
 
 namespace ObfuscationMapGenerator
 {
-    internal class ObfuscatedType
+    public class ObfuscatedType
     {
-        public ObfuscatedType() { ObfuscatedMethods = new List<ObfuscatedMethod>(); }
-        internal string DeobfuscatedName { get; set; }
-        internal string ObfuscatedName { get; set; }
-        internal string Implements { get; set; }
-        internal List<ObfuscatedMethod> ObfuscatedMethods { get; set; }
-
+        public ObfuscatedType() { ObfuscatedMethods = new List<ObfuscatedMethod>(); ObfuscatedFields = new List<ObfuscatedField>(); }
+        public string DeobfuscatedName { get; set; }
+        public string ObfuscatedName { get; set; }
+        public string Implements { get; set; }
+        public List<ObfuscatedMethod> ObfuscatedMethods { get; set; }
+        public List<ObfuscatedField> ObfuscatedFields { get; set; }
     }
 
-    internal class ObfuscatedMethod
+    public class ObfuscatedMethod
     {
         public ObfuscatedMethod() { ObfuscatedSignature = new List<String>(); }
-        internal string DeobfuscatedName { get; set; }
-        internal string ObfuscatedName { get; set; }
-        internal List<String> ObfuscatedSignature { get; set; }
-        internal string Export { get; set; }
+        public string DeobfuscatedName { get; set; }
+        public string ObfuscatedName { get; set; }
+        public List<String> ObfuscatedSignature { get; set; }
+        public string Export { get; set; }
+    }
+
+    public class ObfuscatedField
+    {
+        public string DeobfuscatedName { get; set; }
+        public string ObfuscatedName { get; set; }
+        public List<String> ObfuscatedSignature { get; set; }
+        public string Export { get; set; }
     }
 }
