@@ -1,6 +1,8 @@
 ﻿using MappingApplyer;
 using Newtonsoft.Json;
 using ObfuscationMapGenerator;
+using ReferenceTypeBuilder;
+using CodeWeaving;
 
 namespace Builder
 {
@@ -21,9 +23,14 @@ namespace Builder
 
             // Match target and deob and apply mappings
 
-            var applyOb = new ApplyObfuscatedName(deob101Path, deobMappings, "ObfuscatedNames.dll");
-            var applyDeob = new ApplyDeobfuscatedName("ObfuscatedNames.dll", targetMappings, "DeobfuscatedNames.dll");
+            var applyOb = new ApplyObfuscatedName(deob101Path, deobMappings, "ObfuscatedOSRS.dll");
+            var applyDeob = new ApplyDeobfuscatedName("ObfuscatedOSRS.dll", targetMappings, "DeobfuscatedOSRS.dll");
+
+            // Create mixin reference assembly
+            var referenceTypeBuilder = new ReferenceAssemblyBuilder("DeobfuscatedNames.dll","ReferenceOSRS.dll");
+
             // Apply Mixins
+            var codeWeaver = new CodeWeaver("DeobfuscatedNames.dll", "OSRSMixed.dll", @"C:\Users\x\source\repos\a\ObfuscationMapGenerator\Mixins\bin\Debug\Mixins.dll");
 
             // Apply scripting engine
 
