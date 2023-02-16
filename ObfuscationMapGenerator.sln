@@ -3,7 +3,13 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 17
 VisualStudioVersion = 17.4.33213.308
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ObfuscationMapGenerator", "ObfuscationMapGenerator\ObfuscationMapGenerator.csproj", "{1778447F-9BCF-4520-A796-4EBAA1284D71}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ObfuscationMapGenerator", "ObfuscationMapGenerator\ObfuscationMapGenerator.csproj", "{1778447F-9BCF-4520-A796-4EBAA1284D71}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Builder", "Builder\Builder.csproj", "{8207D86C-DABC-4071-A3C2-9F4638AFF30A}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MappingApplyer", "MappingApplyer\MappingApplyer.csproj", "{B734B697-B1C0-4BBE-8C6F-EB7ED7A987CF}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Logging", "Logging\Logging.csproj", "{9FEC39D7-A1E1-4D68-A4FB-AF9B857B2170}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -15,6 +21,18 @@ Global
 		{1778447F-9BCF-4520-A796-4EBAA1284D71}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{1778447F-9BCF-4520-A796-4EBAA1284D71}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{1778447F-9BCF-4520-A796-4EBAA1284D71}.Release|Any CPU.Build.0 = Release|Any CPU
+		{8207D86C-DABC-4071-A3C2-9F4638AFF30A}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{8207D86C-DABC-4071-A3C2-9F4638AFF30A}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{8207D86C-DABC-4071-A3C2-9F4638AFF30A}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{8207D86C-DABC-4071-A3C2-9F4638AFF30A}.Release|Any CPU.Build.0 = Release|Any CPU
+		{B734B697-B1C0-4BBE-8C6F-EB7ED7A987CF}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{B734B697-B1C0-4BBE-8C6F-EB7ED7A987CF}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{B734B697-B1C0-4BBE-8C6F-EB7ED7A987CF}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{B734B697-B1C0-4BBE-8C6F-EB7ED7A987CF}.Release|Any CPU.Build.0 = Release|Any CPU
+		{9FEC39D7-A1E1-4D68-A4FB-AF9B857B2170}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{9FEC39D7-A1E1-4D68-A4FB-AF9B857B2170}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{9FEC39D7-A1E1-4D68-A4FB-AF9B857B2170}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{9FEC39D7-A1E1-4D68-A4FB-AF9B857B2170}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

@@ -1,25 +1,29 @@
-﻿
-
-using dnlib.DotNet;
+﻿using dnlib.DotNet;
 using Newtonsoft.Json;
-
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
 
 namespace ObfuscationMapGenerator
 {
-    internal class Program
+    public static class ObfuscationMapper
     {
-        static void Main(string[] args)
+        public static void ObfuscationMapGenerator(string inputAssembly, string output)
         {
-            var module = ModuleDefMD.Load(@"C:\Users\x\Desktop\osrs-211.dll");
+            var module = ModuleDefMD.Load(inputAssembly);
 
             var obfuscatedTypes = new List<ObfuscatedType>();
 
-            foreach (var type in module.GetTypes())
+            foreach (var type in module.GetTypes().Where(t=>t.Namespace == ""))
             {
                 if (type.CustomAttributes == null)
                     continue;
                 var obfuscatedType = new ObfuscatedType();
                 obfuscatedType.DeobfuscatedName = type.Name;
+                if (type.Name == "client")
+                    obfuscatedType.ObfuscatedName = "client";
                 foreach (var customAttribute in type.CustomAttributes)
                 {
                     if (customAttribute.AttributeType.Name == "ObfuscatedNameAttribute")
@@ -42,6 +46,9 @@ namespace ObfuscationMapGenerator
 
                     var obfuscatedMethod = new ObfuscatedMethod();
                     obfuscatedMethod.DeobfuscatedName = method.Name;
+
+                    obfuscatedMethod.Static = method.IsStatic;
+
                     foreach (var customAttribute in method.CustomAttributes)
                     {
                         if (customAttribute.AttributeType.Name == "ObfuscatedNameAttribute")
@@ -66,7 +73,7 @@ namespace ObfuscationMapGenerator
                             }
                         }
                     }
-                    if(obfuscatedType.DeobfuscatedName != null)
+                    if (obfuscatedType.DeobfuscatedName != null)
                         obfuscatedType.ObfuscatedMethods.Add(obfuscatedMethod);
                 }
 
@@ -112,8 +119,7 @@ namespace ObfuscationMapGenerator
                     obfuscatedTypes.Add(obfuscatedType);
             }
             var jsonMappings = JsonConvert.SerializeObject(obfuscatedTypes);
-            File.WriteAllText("mappings.json", jsonMappings);
-            Console.ReadKey();
+            File.WriteAllText(output, jsonMappings);
         }
     }
 }

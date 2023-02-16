@@ -12,6 +12,7 @@ namespace ObfuscationMapGenerator
         public string DeobfuscatedName { get; set; }
         public string ObfuscatedName { get; set; }
         public string Implements { get; set; }
+
         public List<ObfuscatedMethod> ObfuscatedMethods { get; set; }
         public List<ObfuscatedField> ObfuscatedFields { get; set; }
     }
@@ -21,6 +22,7 @@ namespace ObfuscationMapGenerator
         public ObfuscatedMethod() { ObfuscatedSignature = new List<String>(); }
         public string DeobfuscatedName { get; set; }
         public string ObfuscatedName { get; set; }
+        public bool Static { get; set; }
         public List<String> ObfuscatedSignature { get; set; }
         public string Export { get; set; }
     }
