@@ -131,6 +131,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="class290.cs" />
     <Compile Include="GameEngine.cs" />
     <Compile Include="MixinSettings.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

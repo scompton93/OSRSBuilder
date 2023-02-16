@@ -9,8 +9,6 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Builder", "Builder\Builder.
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MappingApplyer", "MappingApplyer\MappingApplyer.csproj", "{B734B697-B1C0-4BBE-8C6F-EB7ED7A987CF}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Logging", "Logging\Logging.csproj", "{9FEC39D7-A1E1-4D68-A4FB-AF9B857B2170}"
-EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CodeWeaving", "CodeWeaving\CodeWeaving.csproj", "{0D37FE43-66EF-4B83-9541-8814FD95E354}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Mixins", "Mixins\Mixins.csproj", "{04941F1E-611A-44AB-B3CC-0D7EC96FDF6D}"
@@ -35,10 +33,6 @@ Global
 		{B734B697-B1C0-4BBE-8C6F-EB7ED7A987CF}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{B734B697-B1C0-4BBE-8C6F-EB7ED7A987CF}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{B734B697-B1C0-4BBE-8C6F-EB7ED7A987CF}.Release|Any CPU.Build.0 = Release|Any CPU
-		{9FEC39D7-A1E1-4D68-A4FB-AF9B857B2170}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{9FEC39D7-A1E1-4D68-A4FB-AF9B857B2170}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{9FEC39D7-A1E1-4D68-A4FB-AF9B857B2170}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{9FEC39D7-A1E1-4D68-A4FB-AF9B857B2170}.Release|Any CPU.Build.0 = Release|Any CPU
 		{0D37FE43-66EF-4B83-9541-8814FD95E354}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{0D37FE43-66EF-4B83-9541-8814FD95E354}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{0D37FE43-66EF-4B83-9541-8814FD95E354}.Release|Any CPU.ActiveCfg = Release|Any CPU

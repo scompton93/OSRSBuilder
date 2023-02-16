@@ -50,7 +50,7 @@ namespace CodeWeaving
                                 .First()
                                 .Types.Where(t => t.Name == targetClass)
                                 .SelectMany(t => t.Methods)
-                                .FirstOrDefault(m => m.Name == targetMethod + "_Post");
+                                .FirstOrDefault(m => m.Name == mixinMethod.Name);
 
                             var test = assembly.Modules
                                 .First()

@@ -9,7 +9,6 @@
 
   <ItemGroup>
     <ProjectReference Include="..\CodeWeaving\CodeWeaving.csproj" />
-    <ProjectReference Include="..\Logging\Logging.csproj" />
     <ProjectReference Include="..\MappingApplyer\MappingApplyer.csproj" />
     <ProjectReference Include="..\Mixins\Mixins.csproj" />
     <ProjectReference Include="..\ObfuscationMapGenerator\ObfuscationMapGenerator.csproj" />

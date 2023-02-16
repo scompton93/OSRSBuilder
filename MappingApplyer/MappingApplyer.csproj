@@ -7,7 +7,6 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\Logging\Logging.csproj" />
     <ProjectReference Include="..\ObfuscationMapGenerator\ObfuscationMapGenerator.csproj" />
   </ItemGroup>
 

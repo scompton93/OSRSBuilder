@@ -3,6 +3,7 @@ using Newtonsoft.Json;
 using ObfuscationMapGenerator;
 using ReferenceTypeBuilder;
 using CodeWeaving;
+using dnlib.DotNet;
 
 namespace Builder
 {
@@ -29,8 +30,26 @@ namespace Builder
             // Create mixin reference assembly
             var referenceTypeBuilder = new ReferenceAssemblyBuilder("DeobfuscatedNames.dll","ReferenceOSRS.dll");
 
+            // temp hack to set field to public
+            {
+                var assembly = AssemblyDef.Load("DeobfuscatedNames.dll");
+                foreach (var module in assembly.Modules)
+                {
+                    foreach (var type in module.Types.Where(t=>t.Name == "GameEngine"))
+                    {
+                        foreach (var field in type.Fields.Where(f=>f.Name == "keyHandler"))
+                        {
+                            field.Access = FieldAttributes.Public;
+                        }
+                        type.Attributes &= ~TypeAttributes.Sealed;
+                    }
+                }
+
+                assembly.Write("DeobfuscatedNamesUnprotected.dll");
+            }
+
             // Apply Mixins
-            var codeWeaver = new CodeWeaver("DeobfuscatedNames.dll", "OSRSMixed.dll", @"C:\Users\x\source\repos\a\ObfuscationMapGenerator\Mixins\bin\Debug\Mixins.dll");
+            var codeWeaver = new CodeWeaver("DeobfuscatedNamesUnprotected.dll", "OSRSMixed.dll", @"C:\Users\x\source\repos\a\ObfuscationMapGenerator\Mixins\bin\Debug\Mixins.dll");
 
             // Apply scripting engine
 
