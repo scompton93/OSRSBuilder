@@ -18,6 +18,9 @@ namespace MappingApplyer
                     type.Name = mapping.DeobfuscatedName;
                     Console.WriteLine($"Changing {mapping.ObfuscatedName} to {mapping.DeobfuscatedName}");
 
+                    //Check if has implements tag
+                    //var hasAttribute = type.CustomAttributes.Any(a => a.AttributeType.FullName == "IKVM.Attributes.ImplementsAttribute");
+
                     foreach (var method in type.Methods)
                     {
                         var deobMethod = mapping.ObfuscatedMethods.Where(o => o.ObfuscatedName == method.Name && o.Static == method.IsStatic).FirstOrDefault();

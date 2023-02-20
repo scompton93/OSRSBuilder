@@ -7,13 +7,15 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ObfuscationMapGenerator", "
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Builder", "Builder\Builder.csproj", "{8207D86C-DABC-4071-A3C2-9F4638AFF30A}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MappingApplyer", "MappingApplyer\MappingApplyer.csproj", "{B734B697-B1C0-4BBE-8C6F-EB7ED7A987CF}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "MappingApplyer", "MappingApplyer\MappingApplyer.csproj", "{B734B697-B1C0-4BBE-8C6F-EB7ED7A987CF}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CodeWeaving", "CodeWeaving\CodeWeaving.csproj", "{0D37FE43-66EF-4B83-9541-8814FD95E354}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "CodeWeaving", "CodeWeaving\CodeWeaving.csproj", "{0D37FE43-66EF-4B83-9541-8814FD95E354}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Mixins", "Mixins\Mixins.csproj", "{04941F1E-611A-44AB-B3CC-0D7EC96FDF6D}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ReferenceTypeBuilder", "ReferenceTypeBuilder\ReferenceTypeBuilder.csproj", "{A436927C-0FC6-47FD-9C6F-1092B32A5AA3}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ReferenceTypeBuilder", "ReferenceTypeBuilder\ReferenceTypeBuilder.csproj", "{A436927C-0FC6-47FD-9C6F-1092B32A5AA3}"
+EndProject
+Project("{F2A71F9B-5D33-465A-A702-920D77279786}") = "MixinsF", "MixinsF\MixinsF.fsproj", "{C8D70773-8F78-4C73-BD82-99A7BA957A1F}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -45,6 +47,10 @@ Global
 		{A436927C-0FC6-47FD-9C6F-1092B32A5AA3}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{A436927C-0FC6-47FD-9C6F-1092B32A5AA3}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{A436927C-0FC6-47FD-9C6F-1092B32A5AA3}.Release|Any CPU.Build.0 = Release|Any CPU
+		{C8D70773-8F78-4C73-BD82-99A7BA957A1F}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{C8D70773-8F78-4C73-BD82-99A7BA957A1F}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{C8D70773-8F78-4C73-BD82-99A7BA957A1F}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{C8D70773-8F78-4C73-BD82-99A7BA957A1F}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

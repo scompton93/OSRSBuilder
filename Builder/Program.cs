@@ -37,7 +37,7 @@ namespace Builder
                 {
                     foreach (var type in module.Types.Where(t=>t.Name == "GameEngine"))
                     {
-                        foreach (var field in type.Fields.Where(f=>f.Name == "keyHandler"))
+                        foreach (var field in type.Fields.Where(f=>f.Name == "keyHandler" || f.Name == "gameEngine" || f.Name == "canvas"))
                         {
                             field.Access = FieldAttributes.Public;
                         }

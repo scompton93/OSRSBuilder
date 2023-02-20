@@ -10,5 +10,6 @@ namespace Mixins
     {
         public string TargetClass { get; set; }
         public string TargetMethod { get; set; }
+        public bool Replace { get; set; }
     }
 }

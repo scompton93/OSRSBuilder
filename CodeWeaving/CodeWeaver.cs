@@ -32,6 +32,10 @@ namespace CodeWeaving
                     .Where(a => a.Name == "TargetMethod")
                     .First()
                     .Value.ToString();
+                var replaceMethod = mixinSettings.Properties
+                    .Where(a => a.Name == "Replace")
+                    .First()
+                    .Value;
 
                 mixinMethod.DeclaringType = null;
                 mixinMethod.Name = mixinMethod.Name + "_Post";
@@ -52,20 +56,18 @@ namespace CodeWeaving
                                 .SelectMany(t => t.Methods)
                                 .FirstOrDefault(m => m.Name == mixinMethod.Name);
 
-                            var test = assembly.Modules
-                                .First()
-                                .Types.Where(t => t.Name == targetClass)
-                                .SelectMany(t => t.Methods);
-
                             var targetMethodToOverWrite = assembly.Modules
                                 .First()
                                 .Types.Where(t => t.Name == targetClass)
                                 .SelectMany(t => t.Methods)
                                 .FirstOrDefault(m => m.Name == targetMethod);
 
-                            targetMethodToOverWrite.Body = sourceMethodToWriteWith.Body;
-
-                            //targetType.Methods.Remove(sourceMethodToWriteWith);
+                            if ((bool)replaceMethod)
+                            {
+                                targetMethodToOverWrite.Body = sourceMethodToWriteWith.Body;
+                                //targetType.Methods.Remove(sourceMethodToWriteWith);
+                            }
+                                
                         }
                     }
                 }

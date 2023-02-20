@@ -1,17 +1,10 @@
 ﻿using java.net;
-using java.nio;
-using sun.misc;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace Mixins
 {
     public abstract class class290Mod : class290
     {
-        [MixinSettings(TargetClass = "class290", TargetMethod = "loadWorlds")]
+        [MixinSettings(TargetClass = "class290", TargetMethod = "loadWorlds", Replace =true)]
         internal static bool loadWorldsMod()
         {
             if (ClanChannel.World_request == null)

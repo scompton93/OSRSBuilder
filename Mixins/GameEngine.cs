@@ -9,7 +9,7 @@ namespace Mixins
 {
     public abstract class GameEngineMod : GameEngine
     {
-        [MixinSettings(TargetClass = "GameEngine", TargetMethod = "paint")]
+        [MixinSettings(TargetClass = "GameEngine", TargetMethod = "paint", Replace = true)]
         public void paint(Graphics g)
         {
             if (this == GameEngine.gameEngine)
@@ -36,25 +36,39 @@ namespace Mixins
             }
         }
 
-        [MixinSettings(TargetClass = "GameEngine", TargetMethod = "graphicsTick")]
+        [MixinSettings(TargetClass = "GameEngine", TargetMethod = "graphicsTick", Replace = true)]
         internal virtual void graphicsTick()
         {
-            fullRedraw = true;
-            resizeCanvasNextFrame = true;
-
-            System.Console.WriteLine("FPS: " + GameEngine.fps);
+            //fullRedraw = true;
+            //resizeCanvasNextFrame = true;
 
             Container container = this.container();
             long clockNow = global::class153.clockNow();
+            System.Console.WriteLine("clockNow:" + clockNow);
             long graphicsTickTimes = global::GameEngine.graphicsTickTimes[global::class20.field69];
+            System.Console.WriteLine("graphicsTickTimes:" + graphicsTickTimes);
+            System.Console.WriteLine("field69 before:" + global::class20.field69);
+
+
             global::GameEngine.graphicsTickTimes[global::class20.field69] = clockNow;
+
+
             global::class20.field69 = (global::class20.field69 + 1 & 31);
+            System.Console.WriteLine("field69 after:" + global::class20.field69);
+
+
             if (0L != graphicsTickTimes && clockNow > graphicsTickTimes)
             {
                 int clockDiff = (int)(clockNow - graphicsTickTimes);
                 int num4 = (clockDiff >> 1) + 32000;
                 int num5 = clockDiff;
-                global::GameEngine.fps = ((num5 != -1) ? (num4 / num5) : (-num4));
+                int fpsCalc = (-num4);
+                if (num5 != -1)
+                    fpsCalc = num4 / num5;
+
+                System.Console.WriteLine("FPS:" + fpsCalc);
+
+                global::GameEngine.fps = fpsCalc;
             }
             if (++global::GameEngine.field129 - 1 > 50)
             {
@@ -75,18 +89,20 @@ namespace Mixins
             }
             if (this.isCanvasInvalid)
             {
+                System.Console.WriteLine("invalid canvas");
                 this.replaceCanvas();
             }
             this.method149();
             this.draw(this.fullRedraw);
             if (this.fullRedraw)
             {
+                System.Console.WriteLine("clearbg");
                 this.clearBackground();
             }
             this.fullRedraw = false;
         }
 
-        [MixinSettings(TargetClass = "GameEngine", TargetMethod = "run")]
+        [MixinSettings(TargetClass = "GameEngine", TargetMethod = "run", Replace = true)]
         public virtual void run()
         {
             GameEngine.fiveOrOne = 5;
@@ -111,7 +127,7 @@ namespace Mixins
             this.kill();
         }
 
-        [MixinSettings(TargetClass = "GameEngine", TargetMethod = "clientTick")]
+        [MixinSettings(TargetClass = "GameEngine", TargetMethod = "clientTick", Replace = true)]
         void clientTick()
         {
             long num = class153.clockNow();
@@ -121,6 +137,58 @@ namespace Mixins
             if (0L == num2 || num > num2) { }
             GameEngine.hasFocus = GameEngine.volatileFocus;
             this.doCycle();
+        }
+
+        [MixinSettings(TargetClass = "GameEngine", TargetMethod = "addCanvas", Replace = true)]
+        internal void addCanvas()
+        {
+            System.Console.WriteLine("add vancas");
+            Container container = this.container();
+            if (this.canvas != null)
+            {
+                this.canvas.removeFocusListener(this);
+                container.remove(this.canvas);
+            }
+            global::GameEngine.canvasWidth = java.lang.Math.max(container.getWidth(), this.field126);
+            global::class127.canvasHeight = java.lang.Math.max(container.getHeight(), this.field123);
+            if (this.frame != null)
+            {
+                Insets insets = this.frame.getInsets();
+                global::GameEngine.canvasWidth -= insets.right + insets.left;
+                global::class127.canvasHeight -= insets.bottom + insets.top;
+            }
+            this.canvas = new global::Canvas(this);
+            container.setBackground(Color.BLACK);
+            container.setLayout(null);
+            container.add(this.canvas);
+            this.canvas.setSize(global::GameEngine.canvasWidth, global::class127.canvasHeight);
+            this.canvas.setVisible(true);
+            this.canvas.setBackground(Color.BLACK);
+            if (container == this.frame)
+            {
+                Insets insets = this.frame.getInsets();
+                this.canvas.setLocation(this.canvasX + insets.left, insets.top + this.canvasY);
+            }
+            else
+            {
+                this.canvas.setLocation(this.canvasX, this.canvasY);
+            }
+            this.canvas.addFocusListener(this);
+            this.canvas.requestFocus();
+            this.fullRedraw = true;
+
+            if (global::KeyHandler.rasterProvider != null && global::GameEngine.canvasWidth == global::KeyHandler.rasterProvider.width && global::class127.canvasHeight == global::KeyHandler.rasterProvider.height)
+            {
+                ((global::RasterProvider)global::KeyHandler.rasterProvider).setComponent(this.canvas);
+                global::KeyHandler.rasterProvider.drawFull(0, 0);
+            }
+            else
+            {
+                global::KeyHandler.rasterProvider = new global::RasterProvider(global::GameEngine.canvasWidth, global::class127.canvasHeight, this.canvas);
+            }
+            this.isCanvasInvalid = false;
+
+            this.field130 = global::class153.clockNow();
         }
     }
 }
