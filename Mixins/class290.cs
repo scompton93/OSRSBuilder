@@ -4,7 +4,7 @@ namespace Mixins
 {
     public abstract class class290Mod : class290
     {
-        [MixinSettings(TargetClass = "class290", TargetMethod = "loadWorlds", Replace =true)]
+        //[MixinSettings(TargetClass = "class290", TargetMethod = "loadWorlds", Replace =true)]
         internal static bool loadWorldsMod()
         {
             if (ClanChannel.World_request == null)

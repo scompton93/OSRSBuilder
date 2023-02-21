@@ -9,7 +9,7 @@ namespace Mixins
 {
     public abstract class GameEngineMod : GameEngine
     {
-        [MixinSettings(TargetClass = "GameEngine", TargetMethod = "paint", Replace = true)]
+        //[MixinSettings(TargetClass = "GameEngine", TargetMethod = "paint", Replace = true)]
         public void paint(Graphics g)
         {
             if (this == GameEngine.gameEngine)
@@ -36,7 +36,7 @@ namespace Mixins
             }
         }
 
-        [MixinSettings(TargetClass = "GameEngine", TargetMethod = "graphicsTick", Replace = true)]
+        //[MixinSettings(TargetClass = "GameEngine", TargetMethod = "graphicsTick", Replace = true)]
         internal virtual void graphicsTick()
         {
             //fullRedraw = true;
@@ -102,7 +102,7 @@ namespace Mixins
             this.fullRedraw = false;
         }
 
-        [MixinSettings(TargetClass = "GameEngine", TargetMethod = "run", Replace = true)]
+        //[MixinSettings(TargetClass = "GameEngine", TargetMethod = "run", Replace = true)]
         public virtual void run()
         {
             GameEngine.fiveOrOne = 5;
@@ -127,7 +127,7 @@ namespace Mixins
             this.kill();
         }
 
-        [MixinSettings(TargetClass = "GameEngine", TargetMethod = "clientTick", Replace = true)]
+        //[MixinSettings(TargetClass = "GameEngine", TargetMethod = "clientTick", Replace = true)]
         void clientTick()
         {
             long num = class153.clockNow();
@@ -139,7 +139,7 @@ namespace Mixins
             this.doCycle();
         }
 
-        [MixinSettings(TargetClass = "GameEngine", TargetMethod = "addCanvas", Replace = true)]
+        //[MixinSettings(TargetClass = "GameEngine", TargetMethod = "addCanvas", Replace = true)]
         internal void addCanvas()
         {
             System.Console.WriteLine("add vancas");

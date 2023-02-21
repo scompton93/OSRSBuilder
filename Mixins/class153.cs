@@ -14,7 +14,7 @@ namespace Mixins
         {
         }
 
-        [MixinSettings(TargetClass = "class153", TargetMethod = "clockNow", Replace = true)]
+        //[MixinSettings(TargetClass = "class153", TargetMethod = "clockNow", Replace = true)]
         public static long clockNow()
         {
             long currentTimeMillis = java.lang.System.currentTimeMillis();
