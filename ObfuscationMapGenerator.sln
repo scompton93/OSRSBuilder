@@ -15,8 +15,6 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Mixins", "Mixins\Mixins.csp
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ReferenceTypeBuilder", "ReferenceTypeBuilder\ReferenceTypeBuilder.csproj", "{A436927C-0FC6-47FD-9C6F-1092B32A5AA3}"
 EndProject
-Project("{F2A71F9B-5D33-465A-A702-920D77279786}") = "MixinsF", "MixinsF\MixinsF.fsproj", "{C8D70773-8F78-4C73-BD82-99A7BA957A1F}"
-EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -47,10 +45,6 @@ Global
 		{A436927C-0FC6-47FD-9C6F-1092B32A5AA3}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{A436927C-0FC6-47FD-9C6F-1092B32A5AA3}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{A436927C-0FC6-47FD-9C6F-1092B32A5AA3}.Release|Any CPU.Build.0 = Release|Any CPU
-		{C8D70773-8F78-4C73-BD82-99A7BA957A1F}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{C8D70773-8F78-4C73-BD82-99A7BA957A1F}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{C8D70773-8F78-4C73-BD82-99A7BA957A1F}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{C8D70773-8F78-4C73-BD82-99A7BA957A1F}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
