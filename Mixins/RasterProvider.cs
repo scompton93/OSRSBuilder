@@ -43,10 +43,12 @@ namespace Mixins
         [MixinSettings(TargetClass = "RasterProvider", TargetMethod = "drawFull0", Replace = true)]
         public void drawFull0(Graphics A_1, int A_2, int A_3)
         {
-            //System.Console.WriteLine("DrawFull0");
+            System.Console.WriteLine("DrawFull0");
             try
             {
                 A_1.drawImage(this.image, A_2, A_3, this.component);
+
+
             }
             catch (System.Exception x)
             {
