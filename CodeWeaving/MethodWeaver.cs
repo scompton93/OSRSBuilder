@@ -3,9 +3,9 @@ using dnlib.DotNet;
 
 namespace CodeWeaving
 {
-    public class CodeWeaver
+    public class MethodWeaver
     {
-        public CodeWeaver(string source,string output, string mixinsPath)
+        public MethodWeaver(string source,string output, string mixinsPath)
         {
             var assembly = AssemblyDef.Load(source);
 
@@ -16,13 +16,13 @@ namespace CodeWeaving
                 .GetTypes()
                 .SelectMany(t => t.Methods)
                 .Where(m => m.HasCustomAttributes)
-                .Where(m => m.CustomAttributes.Any(ca => ca.TypeFullName == "Mixins.MixinSettings"))
+                .Where(m => m.CustomAttributes.Any(ca => ca.TypeFullName == "Mixins.MixinMethod"))
                 .ToList();
 
             foreach (var mixinMethod in methodsWithAttribute)
             {
                 var mixinSettings = mixinMethod.CustomAttributes
-                    .Where(a => a.TypeFullName == "Mixins.MixinSettings")
+                    .Where(a => a.TypeFullName == "Mixins.MixinMethod")
                     .First();
                 var targetClass = mixinSettings.Properties
                     .Where(a => a.Name == "TargetClass")

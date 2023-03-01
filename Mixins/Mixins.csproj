@@ -132,7 +132,9 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="class153.cs" />
-    <Compile Include="MixinSettings.cs" />
+    <Compile Include="GameEngine.cs" />
+    <Compile Include="MixinField.cs" />
+    <Compile Include="MixinMethod.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="RasterProvider.cs" />
   </ItemGroup>

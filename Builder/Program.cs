@@ -27,9 +27,6 @@ namespace Builder
             var applyOb = new ApplyObfuscatedName(deob101Path, deobMappings, "ObfuscatedOSRS.dll");
             var applyDeob = new ApplyDeobfuscatedName("ObfuscatedOSRS.dll", targetMappings, "DeobfuscatedOSRS.dll");
 
-            // Create mixin reference assembly
-            var referenceTypeBuilder = new ReferenceAssemblyBuilder("DeobfuscatedNames.dll","ReferenceOSRS.dll");
-
             // temp hack to set field to public
             {
                 var assembly = AssemblyDef.Load("DeobfuscatedNames.dll");
@@ -43,13 +40,21 @@ namespace Builder
                         }
                         type.Attributes &= ~TypeAttributes.Sealed;
                     }
+                    foreach (var type in module.Types.Where(t => t.Name == "AbstractRasterProvider"))
+                    {
+                        FieldDef fieldInjectedArray = new FieldDefUser("SFMLByteArray", new FieldSig(new SZArraySig(module.CorLibTypes.Byte)), FieldAttributes.Public);
+                        type.Fields.Add(fieldInjectedArray);
+                    }
                 }
 
                 assembly.Write("DeobfuscatedNamesUnprotected.dll");
             }
 
+            // Create mixin reference assembly
+            var referenceTypeBuilder = new ReferenceAssemblyBuilder("DeobfuscatedNamesUnprotected.dll", "ReferenceOSRS.dll");
+
             // Apply Mixins
-            var codeWeaver = new CodeWeaver("DeobfuscatedNamesUnprotected.dll", "OSRSMixed.dll", @"C:\Users\x\source\repos\a\ObfuscationMapGenerator\Mixins\bin\Debug\Mixins.dll");
+            var codeWeaver = new MethodWeaver("DeobfuscatedNamesUnprotected.dll", "OSRSMixed.dll", @"C:\Users\x\source\repos\a\ObfuscationMapGenerator\Mixins\bin\Debug\Mixins.dll");
 
             // Apply scripting engine
 

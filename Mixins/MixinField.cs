@@ -6,10 +6,10 @@ using System.Threading.Tasks;
 
 namespace Mixins
 {
-    public class MixinSettings : Attribute
+    public class MixinField : Attribute
     {
         public string TargetClass { get; set; }
-        public string TargetMethod { get; set; }
+        public string TargetField { get; set; }
         public bool Replace { get; set; }
     }
 }
